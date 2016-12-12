@@ -1,0 +1,14 @@
+C:\Users\Brandon\documents\visual studio 2015\Projects\TaxPreparerSoftware\TaxPreparerSoftware\obj\Debug\TaxPreparerSoftware.csprojResolveAssemblyReference.cache
+C:\Users\Brandon\documents\visual studio 2015\Projects\TaxPreparerSoftware\TaxPreparerSoftware\obj\Debug\TaxPreparerSoftware.Form1.resources
+C:\Users\Brandon\documents\visual studio 2015\Projects\TaxPreparerSoftware\TaxPreparerSoftware\obj\Debug\TaxPreparerSoftware.HomeScreen.resources
+C:\Users\Brandon\documents\visual studio 2015\Projects\TaxPreparerSoftware\TaxPreparerSoftware\obj\Debug\TaxPreparerSoftware.Properties.Resources.resources
+C:\Users\Brandon\documents\visual studio 2015\Projects\TaxPreparerSoftware\TaxPreparerSoftware\obj\Debug\TaxPreparerSoftware.csproj.GenerateResource.Cache
+C:\Users\Brandon\documents\visual studio 2015\Projects\TaxPreparerSoftware\TaxPreparerSoftware\bin\Debug\TaxPreparerSoftware.exe.config
+C:\Users\Brandon\documents\visual studio 2015\Projects\TaxPreparerSoftware\TaxPreparerSoftware\bin\Debug\TaxPreparerSoftware.exe
+C:\Users\Brandon\documents\visual studio 2015\Projects\TaxPreparerSoftware\TaxPreparerSoftware\bin\Debug\TaxPreparerSoftware.pdb
+C:\Users\Brandon\documents\visual studio 2015\Projects\TaxPreparerSoftware\TaxPreparerSoftware\bin\Debug\EntityFramework.dll
+C:\Users\Brandon\documents\visual studio 2015\Projects\TaxPreparerSoftware\TaxPreparerSoftware\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Brandon\documents\visual studio 2015\Projects\TaxPreparerSoftware\TaxPreparerSoftware\bin\Debug\EntityFramework.xml
+C:\Users\Brandon\documents\visual studio 2015\Projects\TaxPreparerSoftware\TaxPreparerSoftware\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Brandon\documents\visual studio 2015\Projects\TaxPreparerSoftware\TaxPreparerSoftware\obj\Debug\TaxPreparerSoftware.exe
+C:\Users\Brandon\documents\visual studio 2015\Projects\TaxPreparerSoftware\TaxPreparerSoftware\obj\Debug\TaxPreparerSoftware.pdb

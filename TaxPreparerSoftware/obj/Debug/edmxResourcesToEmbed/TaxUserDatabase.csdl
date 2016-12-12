@@ -1,0 +1,312 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="TaxModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Status">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="UserToPreparers" Relationship="Self.FK_UserToPreparer_Status" FromRole="Status" ToRole="UserToPreparer" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="MiddleName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="PhoneNumber" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="EmailAddress" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Airline" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="User1099" Relationship="Self.FK_User1099_User" FromRole="User" ToRole="User1099" />
+    <NavigationProperty Name="UserMiscDocs" Relationship="Self.FK_UserMiscDocs_User" FromRole="User" ToRole="UserMiscDocs" />
+    <NavigationProperty Name="UserPerDiems" Relationship="Self.FK_UserPerDiem_User" FromRole="User" ToRole="UserPerDiem" />
+    <NavigationProperty Name="UserToPreparers" Relationship="Self.FK_UserToPreparer_User" FromRole="User" ToRole="UserToPreparer" />
+    <NavigationProperty Name="UserW2" Relationship="Self.FK_UserW2_User" FromRole="User" ToRole="UserW2" />
+    <NavigationProperty Name="PreparerNotes" Relationship="TaxModel.FK_PreparerNotes_User" FromRole="User" ToRole="PreparerNote" />
+  </EntityType>
+  <EntityType Name="User1099">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Path" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Date" Type="String" MaxLength="16" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="UserId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="User" Relationship="Self.FK_User1099_User" FromRole="User1099" ToRole="User" />
+  </EntityType>
+  <EntityType Name="UserMiscDoc">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Path" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Date" Type="String" MaxLength="16" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="UserId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="User" Relationship="Self.FK_UserMiscDocs_User" FromRole="UserMiscDocs" ToRole="User" />
+    <Property Name="Year" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="UserPerDiem">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserId" Type="Int32" Nullable="false" />
+    <Property Name="Month" Type="String" MaxLength="24" FixedLength="false" Unicode="true" />
+    <Property Name="Year" Type="Int32" Nullable="false" />
+    <Property Name="Allowance" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="User" Relationship="Self.FK_UserPerDiem_User" FromRole="UserPerDiem" ToRole="User" />
+  </EntityType>
+  <EntityType Name="UserToPreparer">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="UserId" Type="Int32" Nullable="false" />
+    <Property Name="TaxPreparerId" Type="Int32" Nullable="false" />
+    <Property Name="StatusId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Status" Relationship="Self.FK_UserToPreparer_Status" FromRole="UserToPreparer" ToRole="Status" />
+    <NavigationProperty Name="User" Relationship="Self.FK_UserToPreparer_User" FromRole="UserToPreparer" ToRole="User" />
+    <NavigationProperty Name="TaxPreparer" Relationship="TaxModel.FK_UserToPreparer_TaxPreparer" FromRole="UserToPreparer" ToRole="TaxPreparer" />
+    <Property Name="Year" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="UserW2">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Path" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Date" Type="String" MaxLength="16" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="UserId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="User" Relationship="Self.FK_UserW2_User" FromRole="UserW2" ToRole="User" />
+  </EntityType>
+  <Association Name="FK_UserToPreparer_Status">
+    <End Role="Status" Type="Self.Status" Multiplicity="1" />
+    <End Role="UserToPreparer" Type="Self.UserToPreparer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Status">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="UserToPreparer">
+        <PropertyRef Name="StatusId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_User1099_User">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="User1099" Type="Self.User1099" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="User1099">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserMiscDocs_User">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="UserMiscDocs" Type="Self.UserMiscDoc" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="UserMiscDocs">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserPerDiem_User">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="UserPerDiem" Type="Self.UserPerDiem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="UserPerDiem">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserToPreparer_User">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="UserToPreparer" Type="Self.UserToPreparer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="UserToPreparer">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserW2_User">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="UserW2" Type="Self.UserW2" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="UserW2">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="TaxEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Status" EntityType="Self.Status" />
+    <EntitySet Name="Users" EntityType="Self.User" />
+    <EntitySet Name="User1099" EntityType="Self.User1099" />
+    <EntitySet Name="UserMiscDocs" EntityType="Self.UserMiscDoc" />
+    <EntitySet Name="UserPerDiems" EntityType="Self.UserPerDiem" />
+    <EntitySet Name="UserToPreparers" EntityType="Self.UserToPreparer" />
+    <EntitySet Name="UserW2" EntityType="Self.UserW2" />
+    <AssociationSet Name="FK_UserToPreparer_Status" Association="Self.FK_UserToPreparer_Status">
+      <End Role="Status" EntitySet="Status" />
+      <End Role="UserToPreparer" EntitySet="UserToPreparers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_User1099_User" Association="Self.FK_User1099_User">
+      <End Role="User" EntitySet="Users" />
+      <End Role="User1099" EntitySet="User1099" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserMiscDocs_User" Association="Self.FK_UserMiscDocs_User">
+      <End Role="User" EntitySet="Users" />
+      <End Role="UserMiscDocs" EntitySet="UserMiscDocs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserPerDiem_User" Association="Self.FK_UserPerDiem_User">
+      <End Role="User" EntitySet="Users" />
+      <End Role="UserPerDiem" EntitySet="UserPerDiems" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserToPreparer_User" Association="Self.FK_UserToPreparer_User">
+      <End Role="User" EntitySet="Users" />
+      <End Role="UserToPreparer" EntitySet="UserToPreparers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserW2_User" Association="Self.FK_UserW2_User">
+      <End Role="User" EntitySet="Users" />
+      <End Role="UserW2" EntitySet="UserW2" />
+    </AssociationSet>
+    <EntitySet Name="TaxPreparers" EntityType="TaxModel.TaxPreparer" />
+    <AssociationSet Name="FK_UserToPreparer_TaxPreparer" Association="TaxModel.FK_UserToPreparer_TaxPreparer">
+      <End Role="TaxPreparer" EntitySet="TaxPreparers" />
+      <End Role="UserToPreparer" EntitySet="UserToPreparers" />
+    </AssociationSet>
+    <EntitySet Name="PreparerNotes" EntityType="TaxModel.PreparerNote" />
+    <AssociationSet Name="FK_PreparerNotes_TaxPreparer" Association="TaxModel.FK_PreparerNotes_TaxPreparer">
+      <End Role="TaxPreparer" EntitySet="TaxPreparers" />
+      <End Role="PreparerNote" EntitySet="PreparerNotes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PreparerNotes_TaxPreparer1" Association="TaxModel.FK_PreparerNotes_TaxPreparer1">
+      <End Role="TaxPreparer" EntitySet="TaxPreparers" />
+      <End Role="PreparerNote" EntitySet="PreparerNotes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PreparerNotes_User" Association="TaxModel.FK_PreparerNotes_User">
+      <End Role="User" EntitySet="Users" />
+      <End Role="PreparerNote" EntitySet="PreparerNotes" />
+    </AssociationSet>
+    <EntitySet Name="Roles" EntityType="TaxModel.Role" />
+    <AssociationSet Name="FK_TaxPreparer_Role" Association="TaxModel.FK_TaxPreparer_Role">
+      <End Role="Role" EntitySet="Roles" />
+      <End Role="TaxPreparer" EntitySet="TaxPreparers" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="TaxPreparer">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FirstName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="LastName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="PhoneNumber" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="EmailAddress" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Password" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="UserToPreparers" Relationship="TaxModel.FK_UserToPreparer_TaxPreparer" FromRole="TaxPreparer" ToRole="UserToPreparer" />
+    <NavigationProperty Name="PreparerNotes" Relationship="TaxModel.FK_PreparerNotes_TaxPreparer" FromRole="TaxPreparer" ToRole="PreparerNote" />
+    <NavigationProperty Name="PreparerNotes1" Relationship="TaxModel.FK_PreparerNotes_TaxPreparer1" FromRole="TaxPreparer" ToRole="PreparerNote" />
+    <Property Name="RoleId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Role" Relationship="TaxModel.FK_TaxPreparer_Role" FromRole="TaxPreparer" ToRole="Role" />
+  </EntityType>
+  <Association Name="FK_UserToPreparer_TaxPreparer">
+    <End Type="TaxModel.TaxPreparer" Role="TaxPreparer" Multiplicity="1" />
+    <End Type="TaxModel.UserToPreparer" Role="UserToPreparer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TaxPreparer">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="UserToPreparer">
+        <PropertyRef Name="TaxPreparerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="PreparerNote">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PreparerId" Type="Int32" Nullable="false" />
+    <Property Name="UserId" Type="Int32" Nullable="false" />
+    <Property Name="Notes" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Date" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Year" Type="Int32" Nullable="false" />
+    <Property Name="NoteCreatorId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="TaxPreparer" Relationship="TaxModel.FK_PreparerNotes_TaxPreparer" FromRole="PreparerNote" ToRole="TaxPreparer" />
+    <NavigationProperty Name="TaxPreparer1" Relationship="TaxModel.FK_PreparerNotes_TaxPreparer1" FromRole="PreparerNote" ToRole="TaxPreparer" />
+    <NavigationProperty Name="User" Relationship="TaxModel.FK_PreparerNotes_User" FromRole="PreparerNote" ToRole="User" />
+  </EntityType>
+  <Association Name="FK_PreparerNotes_TaxPreparer">
+    <End Type="TaxModel.TaxPreparer" Role="TaxPreparer" Multiplicity="1" />
+    <End Type="TaxModel.PreparerNote" Role="PreparerNote" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TaxPreparer">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PreparerNote">
+        <PropertyRef Name="PreparerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PreparerNotes_TaxPreparer1">
+    <End Type="TaxModel.TaxPreparer" Role="TaxPreparer" Multiplicity="1" />
+    <End Type="TaxModel.PreparerNote" Role="PreparerNote" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TaxPreparer">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PreparerNote">
+        <PropertyRef Name="NoteCreatorId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PreparerNotes_User">
+    <End Type="TaxModel.User" Role="User" Multiplicity="1" />
+    <End Type="TaxModel.PreparerNote" Role="PreparerNote" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PreparerNote">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Role">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="TaxPreparers" Relationship="TaxModel.FK_TaxPreparer_Role" FromRole="Role" ToRole="TaxPreparer" />
+  </EntityType>
+  <Association Name="FK_TaxPreparer_Role">
+    <End Type="TaxModel.Role" Role="Role" Multiplicity="1" />
+    <End Type="TaxModel.TaxPreparer" Role="TaxPreparer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Role">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TaxPreparer">
+        <PropertyRef Name="RoleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>
